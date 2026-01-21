@@ -3,30 +3,1326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ER Apps Studio</title>
+    <meta name="description" content="ER Apps Studio - Criamos apps e soluções digitais que fazem a diferença. Conheça nossos produtos: Capitão Banana, Go-to-Market Playbook e mais.">
+    <meta name="keywords" content="ER Apps Studio, apps, desenvolvimento, marketing, playbook, Capitão Banana">
+    <meta name="author" content="ER Apps Studio">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="ER Apps Studio - Criamos apps que fazem a diferença">
+    <meta property="og:description" content="Estúdio independente de apps e soluções digitais para educação, marketing e negócios.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://erappsstudio.com">
+    <meta property="og:image" content="https://erappsstudio.com/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <title>ER Apps Studio - Criamos apps que fazem a diferença</title>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ===== VARIABLES ===== */
+        :root {
+            --navy: #0B1F3B;
+            --navy-2: #102A4C;
+            --gold: #C9A227;
+            --gold-light: #E8C547;
+            --white: #FFFFFF;
+            --gray-text: #2B2F36;
+            --gray-line: #E7EAF0;
+            --gray-bg: #F6F8FB;
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== UTILITIES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(201, 162, 39, 0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(11, 31, 59, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(231, 234, 240, 0.1);
+            padding: 12px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--navy-2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--gold);
+            font-size: 1.1rem;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 162, 39, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 50%, var(--navy) 100%);
         }
-        .container {
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(201, 162, 39, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(201, 162, 39, 0.05) 0%, transparent 40%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-content {
             text-align: center;
-            padding: 2rem;
+            z-index: 1;
+            padding: 120px 24px 80px;
         }
-        h1 { font-size: 3rem; margin-bottom: 1rem; }
-        p { font-size: 1.2rem; opacity: 0.9; }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            background: var(--navy-2);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            color: var(--gold);
+            border: 2px solid rgba(201, 162, 39, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                        0 0 80px rgba(201, 162, 39, 0.1);
+            animation: fadeInUp 0.8s ease forwards, float 4s ease-in-out infinite 1s;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 8px;
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+            opacity: 0;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+            opacity: 0;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 48px;
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(201, 162, 39, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(201, 162, 39, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeInUp 0.8s ease forwards 1s, float 2s ease-in-out infinite 1.5s;
+            opacity: 0;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            margin: 0 auto 8px;
+        }
+
+        .scroll-indicator p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            background: var(--white);
+            color: var(--gray-text);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, var(--navy) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--navy);
+            margin-bottom: 24px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px;
+            background: var(--gray-bg);
+            border-radius: 16px;
+            border: 1px solid var(--gray-line);
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            margin-top: 4px;
+        }
+
+        .about-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+            padding: 48px;
+            border-radius: 24px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(11, 31, 59, 0.3);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.15) 0%, transparent 70%);
+        }
+
+        .about-card-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(201, 162, 39, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .about-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* ===== APPS/PRODUCTS ===== */
+        .apps {
+            background: linear-gradient(180deg, var(--white) 0%, var(--gray-bg) 100%);
+            color: var(--gray-text);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .app-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid var(--gray-line);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(11, 31, 59, 0.15);
+            border-color: rgba(201, 162, 39, 0.3);
+        }
+
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .app-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(11, 31, 59, 0.2);
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--gray-bg);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-text);
+            margin-bottom: 16px;
+        }
+
+        .app-badge.coming-soon {
+            background: rgba(201, 162, 39, 0.15);
+            color: var(--gold);
+        }
+
+        .app-card h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .app-card .app-tagline {
+            font-size: 0.95rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .app-card p {
+            color: var(--gray-text);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .app-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .app-tag {
+            padding: 6px 14px;
+            background: var(--gray-bg);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-text);
+        }
+
+        .app-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .app-link {
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .app-link.support {
+            background: var(--gray-bg);
+            color: var(--navy);
+        }
+
+        .app-link.support:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .app-link.privacy {
+            color: var(--gray-text);
+        }
+
+        .app-link.privacy:hover {
+            color: var(--gold);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(201, 162, 39, 0.08) 0%, transparent 40%);
+        }
+
+        .contact .section-header h2 {
+            color: var(--white);
+        }
+
+        .contact .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(201, 162, 39, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(201, 162, 39, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .contact-card a {
+            color: var(--gold);
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            color: var(--gold-light);
+        }
+
+        .contact-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: var(--gray-bg);
+            color: var(--gray-text);
+        }
+
+        .newsletter-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 64px;
+            text-align: center;
+            border: 1px solid var(--gray-line);
+            box-shadow: 0 10px 40px rgba(11, 31, 59, 0.08);
+        }
+
+        .newsletter-box h2 {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .newsletter-box p {
+            color: var(--gray-text);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 240px;
+            padding: 16px 20px;
+            border: 2px solid var(--gray-line);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.1);
+        }
+
+        .newsletter-form button {
+            padding: 16px 32px;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 162, 39, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 64px 0 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom a {
+            color: var(--gold);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(11, 31, 59, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-visual {
+                order: -1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+                border-radius: 24px;
+            }
+
+            .section {
+                padding: 64px 0;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-card {
+                padding: 28px;
+            }
+
+            .newsletter-box {
+                padding: 40px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 ER Apps Studio</h1>
-        <p>Site oficial em construção</p>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">ER</div>
+                <span>Apps Studio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#apps">Apps</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <a href="mailto:hello@erappsstudio.com" class="nav-cta">Fale Conosco</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <span class="close-menu" onclick="toggleMenu()">✕</span>
+        <a href="#about" onclick="toggleMenu()">Sobre</a>
+        <a href="#apps" onclick="toggleMenu()">Apps</a>
+        <a href="#contact" onclick="toggleMenu()">Contato</a>
+        <a href="mailto:hello@erappsstudio.com" class="btn btn-primary" onclick="toggleMenu()">Fale Conosco</a>
     </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">ER</div>
+            <h1>ER <span>Apps Studio</span></h1>
+            <p class="hero-subtitle">Criamos apps que fazem a diferença</p>
+            <p class="hero-tagline">Estúdio independente • Educação • Marketing • Negócios</p>
+            <div class="hero-buttons">
+                <a href="#apps" class="btn btn-primary">
+                    Nossos Apps
+                    <span>→</span>
+                </a>
+                <a href="mailto:hello@erappsstudio.com" class="btn btn-secondary">
+                    Entre em Contato
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <p>Scroll</p>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content animate-on-scroll">
+                    <h2>Transformando ideias em <span class="text-gold">soluções digitais</span></h2>
+                    <p>
+                        A ER Apps Studio é um estúdio independente focado em criar apps e produtos digitais que resolvem problemas reais. Combinamos tecnologia, design e estratégia para entregar soluções que educam, simplificam e geram resultados.
+                    </p>
+                    <p>
+                        Nosso portfólio abrange desde aplicativos educacionais infantis até playbooks estratégicos para negócios. Cada produto é desenvolvido com atenção aos detalhes e foco na experiência do usuário.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Produtos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Segmentos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Potencial</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual animate-on-scroll">
+                    <div class="about-card">
+                        <div class="about-card-icon">🚀</div>
+                        <h3>Nossa Missão</h3>
+                        <p>Capacitar pessoas e negócios através de soluções digitais acessíveis, práticas e eficazes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPS -->
+    <section class="apps section" id="apps">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Nossos <span class="text-gold">Produtos</span></h2>
+                <p>Apps e soluções digitais para educação, marketing e negócios.</p>
+            </div>
+            <div class="apps-grid">
+                <!-- Capitão Banana -->
+                <div class="app-card animate-on-scroll">
+                    <div class="app-icon">🍌</div>
+                    <div class="app-badge">Infantil • Educação</div>
+                    <h3>Capitão Banana</h3>
+                    <p class="app-tagline">by ER Apps Studio</p>
+                    <p>App infantil que ensina crianças sobre alimentação saudável de forma divertida e interativa.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">Infantil</span>
+                        <span class="app-tag">Educação</span>
+                    </div>
+                    <div class="app-links">
+                        <a href="mailto:support.capitaobanana@erappsstudio.com" class="app-link support">Suporte</a>
+                        <a href="mailto:privacy.capitaobanana@erappsstudio.com" class="app-link privacy">Privacidade</a>
+                    </div>
+                </div>
+
+                <!-- Go-to-Market Playbook -->
+                <div class="app-card animate-on-scroll">
+                    <div class="app-icon">📘</div>
+                    <div class="app-badge">Marketing • Negócios</div>
+                    <h3>Go-to-Market Playbook</h3>
+                    <p class="app-tagline">by ER Apps Studio</p>
+                    <p>Playbook executivo para acelerar vendas e marketing com estratégia, velocidade e baixo custo.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">Marketing</span>
+                        <span class="app-tag">Negócios</span>
+                    </div>
+                    <div class="app-links">
+                        <a href="mailto:support.go-to-market@erappsstudio.com" class="app-link support">Suporte</a>
+                        <a href="mailto:privacy.go-to-market@erappsstudio.com" class="app-link privacy">Privacidade</a>
+                    </div>
+                </div>
+
+                <!-- Orçamento em 60s -->
+                <div class="app-card animate-on-scroll">
+                    <div class="app-icon">⚡</div>
+                    <div class="app-badge coming-soon">Em breve</div>
+                    <h3>Orçamento em 60s</h3>
+                    <p class="app-tagline">by ER Apps Studio</p>
+                    <p>Facilita a criação de orçamentos via WhatsApp com agilidade e credibilidade profissional.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">Negócios</span>
+                        <span class="app-tag">Produtividade</span>
+                    </div>
+                    <div class="app-links">
+                        <a href="mailto:contato@erappsstudio.com" class="app-link support">Contato</a>
+                        <a href="mailto:privacy@erappsstudio.com" class="app-link privacy">Privacidade</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Entre em <span class="text-gold">Contato</span></h2>
+                <p>Estamos prontos para ajudar você a transformar sua ideia em realidade.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card animate-on-scroll">
+                    <div class="contact-icon">💬</div>
+                    <h3>Geral</h3>
+                    <a href="mailto:hello@erappsstudio.com">hello@erappsstudio.com</a>
+                    <p>Para parcerias e oportunidades</p>
+                </div>
+                <div class="contact-card animate-on-scroll">
+                    <div class="contact-icon">📧</div>
+                    <h3>Contato</h3>
+                    <a href="mailto:contato@erappsstudio.com">contato@erappsstudio.com</a>
+                    <p>Dúvidas e informações gerais</p>
+                </div>
+                <div class="contact-card animate-on-scroll">
+                    <div class="contact-icon">🔒</div>
+                    <h3>Privacidade</h3>
+                    <a href="mailto:privacy@erappsstudio.com">privacy@erappsstudio.com</a>
+                    <p>Dados e políticas de privacidade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter section">
+        <div class="container">
+            <div class="newsletter-box animate-on-scroll">
+                <h2>Fique por dentro das <span class="text-gold">novidades</span></h2>
+                <p>Receba atualizações sobre nossos produtos, lançamentos e dicas exclusivas.</p>
+                <form class="newsletter-form" action="mailto:hello@erappsstudio.com" method="get" enctype="text/plain">
+                    <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+                    <button type="submit">Inscrever</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">ER</div>
+                        <span>Apps Studio</span>
+                    </a>
+                    <p>Estúdio independente criando apps e soluções digitais que fazem a diferença.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Apps</h4>
+                    <ul>
+                        <li><a href="#apps">Capitão Banana</a></li>
+                        <li><a href="#apps">Go-to-Market Playbook</a></li>
+                        <li><a href="#apps">Orçamento em 60s</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="mailto:privacy@erappsstudio.com">Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="mailto:hello@erappsstudio.com">hello@erappsstudio.com</a></li>
+                        <li><a href="mailto:contato@erappsstudio.com">contato@erappsstudio.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 <a href="#">ER Apps Studio</a>. Todos os direitos reservados.</p>
+                <p>Feito com 💛 no Brasil</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
